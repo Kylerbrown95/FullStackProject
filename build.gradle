@@ -20,6 +20,8 @@ bootJar {
 
 repositories {
     mavenCentral()
+    
+    maven { url "http://repository.jspresso.org/maven2/" }
 }
 
 dependencies {
@@ -30,4 +32,6 @@ dependencies {
     	compile("org.springframework.boot:spring-boot-starter-parent:2.0.3.RELEASE")
     	compile("org.springframework.boot:spring-boot-devtools")
     	compile("org.webjars:bootstrap:4.2.1")
+    	compile("org.apache.commons:commons-io:1.3.2")
+    	compile("javaxt:javaxt-core:1.7.8")
 }

@@ -45,6 +45,11 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/kyler/.gradle/caches/modules-2/files-2.1/javaxt/javaxt-core/1.7.8/91e5b405db72c6129cd16b562a3e3aec346cc6b2/javaxt-core-1.7.8.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="C:/Users/kyler/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-json/2.0.3.RELEASE/954bb5dc2217c4b914cffc923b08781efcadede0/spring-boot-starter-json-2.0.3.RELEASE-sources.jar" kind="lib" path="C:/Users/kyler/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-json/2.0.3.RELEASE/2e389a8727588c549c28bb277f0f573f65554850/spring-boot-starter-json-2.0.3.RELEASE.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
@@ -101,6 +106,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/kyler/.gradle/caches/modules-2/files-2.1/org.webjars/popper.js/1.14.3/b882ad0d6393d5153f08be36253625f4e0b0eb4b/popper.js-1.14.3.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="C:/Users/kyler/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/1.3.2/b41a5f39fa90007a6c247175933555ba5f166d70/commons-io-1.3.2-sources.jar" kind="lib" path="C:/Users/kyler/.gradle/caches/modules-2/files-2.1/commons-io/commons-io/1.3.2/b6dde38349ba9bb5e6ea6320531eae969985dae5/commons-io-1.3.2.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
