@@ -4,12 +4,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -26,13 +26,18 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 
 	@Value("${list.of.photo.file.location}")
 	private String[] listOfLocations;
+	
+	@Autowired
+	private EncryptService encyptService;
 
-	public List<PhotoAttributes> retreiveAllPhotos() {
+	public List<PhotoAttributes> retreiveAndEncyptAllPhotos() {
 
 		List<PhotoAttributes> listOfPhotos = new ArrayList<>();
 
 		try {
-			// TODO: Call database for photos
+			
+			listOfPhotos = getEncyptedPhotos();
+		
 		} catch (Exception e) {
 
 		}
@@ -48,7 +53,7 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 	 * @return HashMap<String, byte[]>
 	 */
 
-	private List<PhotoAttributes> covertPhotoToBytes() {
+	private List<PhotoAttributes> getEncyptedPhotos() {
 
 		List<PhotoAttributes> listOfConvertedPhotos = new ArrayList<>();
 
@@ -69,7 +74,7 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 						byte[] data = bos.toByteArray();
 
 						attributes.setTitle(listOfFiles[i].getName());
-						attributes.setPhoto(data);
+						attributes.setPhoto(encyptService.encrypt(data));
 						attributes.setLocation(getPhotoLocation(path + listOfFiles[i].getName()));
 
 						listOfConvertedPhotos.add(attributes);

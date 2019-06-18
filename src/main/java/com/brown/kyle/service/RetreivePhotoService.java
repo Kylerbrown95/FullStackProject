@@ -1,5 +1,9 @@
 package com.brown.kyle.service;
 
+import java.util.List;
+
+import com.brown.kyle.pojo.PhotoAttributes;
+
 /**
  * 
  * @author Kyle Brown
@@ -7,5 +11,7 @@ package com.brown.kyle.service;
  */
 
 public interface RetreivePhotoService {
+	
+	List<PhotoAttributes> retreiveAndEncyptAllPhotos();
 
 }
