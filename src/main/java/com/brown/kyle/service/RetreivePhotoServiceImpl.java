@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.brown.kyle.pojo.PhotoAttributes;
+import com.brown.kyle.utils.FileConverter;
 
 /**
  * 
@@ -27,6 +28,9 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 	@Value("${list.of.photo.file.location}")
 	private String[] listOfLocations;
 	
+	@Value("${photo.destination.path}")
+	private String destinationPath;
+
 	@Autowired
 	private EncryptService encyptService;
 
@@ -35,15 +39,53 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 		List<PhotoAttributes> listOfPhotos = new ArrayList<>();
 
 		try {
-			
-			listOfPhotos = getEncyptedPhotos();
-		
-		} catch (Exception e) {
 
+			listOfPhotos = getEncyptedPhotos();
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 		return listOfPhotos;
 
+	}
+
+	public void decryptPhotos(List<PhotoAttributes> encryptedPhotos) {
+
+		try {
+
+			List<PhotoAttributes> decryptedPhotos = getDecryptedPhotos(encryptedPhotos);
+			FileConverter.byteToFile(decryptedPhotos, destinationPath);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private List<PhotoAttributes> getDecryptedPhotos(List<PhotoAttributes> encryptedPhotos) {
+		List<PhotoAttributes> decryptedPhotos = new ArrayList<>();
+
+		//TODO: Check if Lambda works
+		encryptedPhotos.forEach(attributes -> {
+
+			PhotoAttributes decryptedAttributes = new PhotoAttributes();
+
+			byte[] decryptedPhoto = null;
+			try {
+				decryptedPhoto = encyptService.decrypt(attributes.getPhoto());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			if (decryptedPhoto != null)
+				decryptedAttributes.setPhoto(decryptedPhoto);
+			decryptedAttributes.setLocation(attributes.getLocation());
+			decryptedAttributes.setTitle(attributes.getTitle());
+
+			decryptedPhotos.add(decryptedAttributes);
+		});
+
+		return decryptedPhotos;
 	}
 
 	/**
@@ -93,10 +135,10 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 
 		javaxt.io.Image image = new javaxt.io.Image(path);
 		double[] gps = image.getGPSCoordinate();
-		
-		if(gps != null)
+
+		if (gps != null)
 			return gps.toString();
-		
+
 		return "No-Location";
 	}
 

@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.brown.kyle.pojo.PhotoAttributes;
@@ -47,6 +49,11 @@ public class UiController {
 			return new ResponseEntity<List<PhotoAttributes>>(HttpStatus.BAD_GATEWAY);
 		}
 
+	}
+	
+	@PostMapping("/decrypt/photos")
+	public void decryptPhotos(@RequestBody List<PhotoAttributes> listOfEncryptedPhotos) {
+		
 	}
 
 }
