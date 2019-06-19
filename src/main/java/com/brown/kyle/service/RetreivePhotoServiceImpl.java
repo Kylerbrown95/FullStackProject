@@ -67,7 +67,7 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 				for (int i = 0; i < listOfFiles.length; i++) {
 					if (listOfFiles[i].isFile()) {
 						PhotoAttributes attributes = new PhotoAttributes();
-						BufferedImage bImage = ImageIO.read(new File(listOfFiles[i].getName()));
+						BufferedImage bImage = ImageIO.read(new File(listOfFiles[i].getAbsoluteFile().toString()));
 
 						ByteArrayOutputStream bos = new ByteArrayOutputStream();
 						ImageIO.write(bImage, FilenameUtils.getExtension(listOfFiles[i].getName()), bos);
@@ -82,6 +82,7 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			// TODO: log and handle exception.
 		}
 
@@ -92,10 +93,11 @@ public class RetreivePhotoServiceImpl implements RetreivePhotoService {
 
 		javaxt.io.Image image = new javaxt.io.Image(path);
 		double[] gps = image.getGPSCoordinate();
-
-		// TODO: use google API to translate GPS location to country
-		// https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true
-		return null;
+		
+		if(gps != null)
+			return gps.toString();
+		
+		return "No-Location";
 	}
 
 }

@@ -24,7 +24,7 @@ public class UiController {
 	@GetMapping("/Stats")
 	public String stats(Model model) {
 
-		model.addAttribute("Hello", "Boo Bear");
+		model.addAttribute("Hello", "Hello World");
 
 		return "Stats";
 	}

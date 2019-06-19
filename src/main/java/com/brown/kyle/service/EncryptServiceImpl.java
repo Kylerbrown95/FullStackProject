@@ -17,7 +17,8 @@ public class EncryptServiceImpl implements EncryptService {
 
 	private static final String ALGORITHM = "AES";
 	// TODO: Create real key
-	private static byte[] KEY_VAL = new byte[] { 'a' };
+	private static byte[] KEY_VAL = new byte[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+			'o', 'p' };
 
 	/**
 	 * @return encrypted data
